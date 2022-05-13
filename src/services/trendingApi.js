@@ -9,17 +9,16 @@ const baseUrl = 'https://yh-finance.p.rapidapi.com';
 
 const createRequest = (url) => ({ url, headers: stockHeaders })
 
-export const stockApi = createApi({
-    reducerPath: 'stockApi',
+export const trendingApi = createApi({
+    reducerPath: 'trendingApi',
     baseQuery: fetchBaseQuery({ baseUrl }),
     endpoints: (builder) => ({
-        getStocks: builder.query({
-            query: () => createRequest("/market/v2/get-summary")
+        getTrending: builder.query({
+            query: () => createRequest("/market/get-trending-tickers")
         })
     })
 });
 
 export const {
-    useGetStocksQuery,
-} = stockApi;
-
+    useGetTrendingQuery,
+} = trendingApi;

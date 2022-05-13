@@ -4,6 +4,7 @@ import { Typography, Row, Col, Statistic } from 'antd';
 import { Link } from 'react-router-dom';
 //import { useGetNewsQuery } from '../services/techNewsApi';
 import { useGetStocksQuery } from '../services/stockApi';
+import { Cryptocurrencies, News } from '../components';
 
 const { Title } = Typography;
 
@@ -31,6 +32,16 @@ const Homepage = () => {
         <Col span={12}><Statistic title="Crude Oil" value={CrudeOil.spark.previousClose} /></Col>
         <Col span={12}><Statistic title="BTC USD" value={BTCUSD.spark.previousClose} /></Col>
       </Row>
+      <div className="home-heading-container">
+        <Title level={2} className="home-title">Trending Stocks</Title>
+        <Title level={3} className="show-more"><Link to="/cryptocurrencies">Show More</Link></Title>
+      </div>
+      <Cryptocurrencies simplified />
+      <div className="home-heading-container">
+        <Title level={2} className="home-title">Latest Tech News</Title>
+        <Title level={3} className="show-more"><Link to="/news">Show More</Link></Title>
+      </div>
+      <News simplified />
     </>
   )
 }
