@@ -4,7 +4,7 @@ import { Typography, Row, Col, Statistic } from 'antd';
 import { Link } from 'react-router-dom';
 //import { useGetNewsQuery } from '../services/techNewsApi';
 import { useGetStocksQuery } from '../services/stockApi';
-import { Cryptocurrencies, News } from '../components';
+import { Stocks, News, Loader } from '../components';
 
 const { Title } = Typography;
 
@@ -19,7 +19,7 @@ const Homepage = () => {
   const BTCUSD = data?.marketSummaryAndSparkResponse?.result[12]
 
   //console.log(data);
-  if(isFetching) return 'Loading... ';
+  if(isFetching) return <Loader />;
 
   return (
     <>
@@ -34,9 +34,9 @@ const Homepage = () => {
       </Row>
       <div className="home-heading-container">
         <Title level={2} className="home-title">Trending Stocks</Title>
-        <Title level={3} className="show-more"><Link to="/cryptocurrencies">Show More</Link></Title>
+        <Title level={3} className="show-more"><Link to="/stocks">Show More</Link></Title>
       </div>
-      <Cryptocurrencies simplified />
+      <Stocks simplified />
       <div className="home-heading-container">
         <Title level={2} className="home-title">Latest Tech News</Title>
         <Title level={3} className="show-more"><Link to="/news">Show More</Link></Title>

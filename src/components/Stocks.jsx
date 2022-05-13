@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { Card, Row, Col, Input } from 'antd';
 import { useGetTrendingQuery } from '../services/trendingApi';
 
-const Cryptocurrencies = ({ simplified }) => {
+import { Loader } from '../components';
+
+const Stocks = ({ simplified }) => {
   const count = simplified ? 10 : 100;
   const { data: stocksList, isFetching } = useGetTrendingQuery(count);
   const [ stocks, setStocks ] = useState([]);
@@ -16,7 +18,7 @@ const Cryptocurrencies = ({ simplified }) => {
 
   }, [stocksList, searchTerm]);
 
-  if(isFetching) return 'Loading... ';
+  if(isFetching) return <Loader />;
   //console.log(stocksList);
   // if (stocks !== undefined) {
   //   console.log(stocksList);
@@ -49,4 +51,4 @@ const Cryptocurrencies = ({ simplified }) => {
   )
 }
 
-export default Cryptocurrencies;
+export default Stocks;

@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const stockHeaders = {
-    'X-RapidAPI-Host': 'yh-finance.p.rapidapi.com',
-    'X-RapidAPI-Key': '74ef464aa3mshe4d6f3055d7cbb0p1ffc59jsn5cbf8535e743',
+    'X-RapidAPI-Host': process.env.REACT_APP_STOCKAPI_HOST,
+    'X-RapidAPI-Key': process.env.REACT_APP_STOCKAPI_KEY,
 }
 
 const baseUrl = 'https://yh-finance.p.rapidapi.com';
@@ -15,11 +15,19 @@ export const stockApi = createApi({
     endpoints: (builder) => ({
         getStocks: builder.query({
             query: () => createRequest("/market/v2/get-summary")
-        })
+        }),
+        getStockDetails: builder.query({
+            query: (stockTicker) => createRequest(`/stock/v2/get-summary/?symbol=${stockTicker}`)
+        }),
+        getChart: builder.query({
+            query: (stockTicker) => createRequest(`/stock/v3/get-summary/?interval=1mo/?range=5y/?symbol=${stockTicker}`)
+        }),
     })
 });
 
 export const {
     useGetStocksQuery,
+    useGetStockDetailsQuery,
+    useGetChartQuery,
 } = stockApi;
 
