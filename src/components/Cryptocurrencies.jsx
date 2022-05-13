@@ -1,26 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import millify from 'millify';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Input } from 'antd';
 import { useGetTrendingQuery } from '../services/trendingApi';
-import { COOKIE_NAME_PRERENDER_BYPASS } from 'next/dist/server/api-utils';
 
-const Cryptocurrencies = () => {
+const Cryptocurrencies = ({ simplified }) => {
+  const count = simplified ? 10 : 100;
+  const { data: stocksList, isFetching } = useGetTrendingQuery(count);
+  const [ stocks, setStocks ] = useState([]);
+  const [ searchTerm, setSearchTerm ] = useState('');
 
-  const { data: stocksList, isFetching } = useGetTrendingQuery();
-  const [ stocks, setStocks ] = useState(stocksList?.finance?.result[0]?.quotes);
+  useEffect(() => {
+    const filteredData = stocksList?.finance?.result[0]?.quotes.filter((ticker) => ticker.symbol.toLowerCase().includes(searchTerm.toLowerCase()));
+    setStocks(filteredData);
+
+  }, [stocksList, searchTerm]);
 
   if(isFetching) return 'Loading... ';
   //console.log(stocksList);
+  // if (stocks !== undefined) {
+  //   console.log(stocksList);
+  // }
 
   return (
     <>
-      <Row gutters={[32, 32]} className="crypto-card-container">
-        {stocks.map((ticker) => (
+      <div className="search-crypto">
+        <input placeholder="Search Ticker" onChange={(e) => setSearchTerm(e.target.value)} />
+      </div>
+      <Row gutter={[32, 32]} className="crypto-card-container">
+        {stocks?.map((ticker) => (
           <Col xs={23} sm={12} lg={6} className="crypto-card" key={ticker.symbol}>
             <Link to={`/stock/${ticker.symbol}`}>
                 <Card 
-                  title={`${ticker.symbol} - ${ticker.longName}`}
+                  title={`${ticker.symbol} - ${ticker.shortName}`}
                   extra={`${ticker.exchange}`}
                   hoverable
                 >

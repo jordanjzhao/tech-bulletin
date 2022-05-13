@@ -18,12 +18,12 @@ const Homepage = () => {
   const CrudeOil = data?.marketSummaryAndSparkResponse?.result[4]
   const BTCUSD = data?.marketSummaryAndSparkResponse?.result[12]
 
-  console.log(data);
+  //console.log(data);
   if(isFetching) return 'Loading... ';
 
   return (
     <>
-      <Title level={2} className="heading">Market Previous Close</Title>
+      <Title level={2} className="heading">Previous Market Close</Title>
       <Row>
         <Col span={12}><Statistic title="S&P Futures" value={SnPFutures.spark.previousClose} /></Col>
         <Col span={12}><Statistic title="Dow Futures" value={DowFutures.spark.previousClose} /></Col>

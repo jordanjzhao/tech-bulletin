@@ -14,7 +14,7 @@ export const trendingApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl }),
     endpoints: (builder) => ({
         getTrending: builder.query({
-            query: () => createRequest("/market/get-trending-tickers")
+            query: (count) => createRequest(`/market/get-trending-tickers?limit=${count}`),
         })
     })
 });
