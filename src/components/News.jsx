@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Select, Typography, Row, Col, Avatar, Card } from 'antd';
 import moment from 'moment';
-import newImage from '../images/pexels-markus-spiske.jpg';
+import newImage from '../images/tb.png';
 
 import { Loader } from '../components';
 import { useGetNewsQuery } from '../services/techNewsApi';
