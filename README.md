@@ -1,3 +1,17 @@
+# Tech Bulletin
+
+An upgrade of "One Stock Shop", a previous project presenting the latest stock market info, trending tickers, and tech news. Developed using React/Redux in the front end while fetching data via the YH Finance API and the Tech News Api. Deployed on Heroku.
+
+## Demo
+
+![alt text](https://github.com/jordanjzhao/tech-bulletin/blob/main/demoImages/demoImg1.png)
+![alt text](https://github.com/jordanjzhao/tech-bulletin/blob/main/demoImages/demoImg2.png)
+![alt text](https://github.com/jordanjzhao/tech-bulletin/blob/main/demoImages/demoImg3.png)
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
